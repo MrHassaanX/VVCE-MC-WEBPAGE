@@ -1,110 +1,276 @@
 <!DOCTYPE html>
 <html lang="en-us" class="no-js">
 
-	<head>
-		<meta charset="utf-8">
-        <title>VVCE-OFFICIAL SERVER</title>
-        <meta name="description" content="The description should optimally be between 150-160 characters.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="SuperHori.Com">
-        <link rel="stylesheet" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/font-awesome.css" />
+<head>
+    <meta charset="utf-8">
+    <title>VVCE-OFFICIAL SERVER</title>
+    <meta name="description" content="The description should optimally be between 150-160 characters.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SuperHori.Com">
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- ============== Resources style ============== -->
+    <link rel="stylesheet" href="css/style.css" />
 
+    <style>
+        /* Custom styling for the copy alert */
+        #copyAlert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #76b852, #8DC26F); /* Minecraft Green color */
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-family: 'Minecraft', sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+            display: none;
+            z-index: 9999;
+            font-weight: bold;
+            text-align: center;
+        }
 
-        <!-- ================= Favicon ================== -->
-        <!-- Standard -->
-        <link rel="shortcut icon" href="img/favicon.png">
-        <!-- ============== Resources style ============== -->
-        <link rel="stylesheet" href="css/style.css" />
+        #copyAlert.show {
+            opacity: 1;
+            display: block;
+        }
 
-		<!-- Modernizr runs quickly on page load to detect features -->
-		
-	</head>
-	
-	<body>
+        /* Animation for the alert */
+        @keyframes alertAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
 
-		<!-- Page preloader -->
-		<div id="loading">
-			<div id="preloader">
-				<span></span>
-				<span></span>
-			</div>
-		</div>
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
 
-		<!-- Overlay and Star effect -->
-		<div class="global-overlay">
-			<div class="overlay skew-part">
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
 
-				<div id='stars'></div>
-				<div id='stars2'></div>
-				<div id='stars3'></div>
+        #copyAlert.show {
+            animation: alertAnimation 2s ease-in-out forwards;
+        }
 
-			</div>
-		</div>
+        /* Social icons container adjusted to align left-bottom */
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
 
-		<!-- START - Home/Left Part -->
-		<section id="left-side">
+        .social-icons img {
+            margin-right: 10px;
+        }
 
+        /* Reduced image sizes */
+        .social-icons img:first-child {
+            width: 130px;
+            height: 130px;
+        }
 
-			<div class="content">
+        .social-icons img:nth-child(2) {
+            width: 30px;
+            height: 30px;
+        }
 
-				<h1 class="text-intro opacity-0">VVCE OFFICIAL<br>MINECRAFT SERVER<br></h1>
+        .social-icons img:last-child {
+            width: 100px;
+            height: 100px;
+        }
 
-				<p class="text-intro opacity-0">IP: PLAY.VVCE.FUN</p>
-				<br>
+        /* Enhanced heading */
+        h1.text-intro {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            margin-top: -50px;
+            text-transform: none; /* Removed all caps */
+        }
 
-				<nav>
-					<ul>
-						<li>
-							<a href="https://vvce.ac.in/" class="light-btn text-intro opacity-0">MAIN WEBSITE</a>
-						</li>
-						<li>
-							<a href="https://discord.gg/uVjhtNde8B" class="action-btn trigger text-intro opacity-0">DISCORD SERVER</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-			
-			<!-- Social icons -->
-			<div class="social-icons">
-				<img src="" alt="" onclick="myFunction()">
-			</div>
-			
-			<script> 
-				function myFunction() { 
-					window.location.href = 'https://discord.gg/uVjhtNde8B';
-				} 
-			</script> 
+        /* Styling for Minecraft-style buttons (broken blocks) with animation */
+        .minecraft-btn {
+            font-size: 18px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            background: url('https://media.minecraft.net/wp-content/uploads/2020/10/Stone_Block.jpg') repeat;
+            border: 3px solid #4c8f29;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
 
-		</section>
-		<!-- END - Home/Left Part -->
+        .minecraft-btn:before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 10px;
+            height: 10px;
+            background-color: #3d5c3d;
+            border-radius: 50%;
+            animation: blockBreaking 1s infinite alternate;
+        }
 
-			<footer>
+        @keyframes blockBreaking {
+            0% {
+                top: 10%;
+                left: 10%;
+                width: 10px;
+                height: 10px;
+            }
 
-				<p style="color:white">Mojang © 2009-2024. "Minecraft" is a trademark of Mojang</p>
+            100% {
+                top: 20%;
+                left: 20%;
+                width: 15px;
+                height: 15px;
+            }
+        }
 
-			</footer>
+        .minecraft-btn:hover {
+            background-color: #7fbf5a;
+            transform: scale(1.1) rotate(5deg);
+            animation: bounce 0.3s ease-out;
+        }
 
-		</section>
+        /* Bounce animation for button */
+        @keyframes bounce {
+            0% {
+                transform: scale(1) rotate(5deg);
+            }
 
-	<!-- * Libraries jQuery, Easing and Bootstrap - Be careful to not remove them * -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.easings.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+            50% {
+                transform: scale(1.2) rotate(-5deg);
+            }
 
-	<!-- PhotoSwipe Core JS file -->
-	<script src="js/velocity.min.js"></script> 
+            100% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
 
-	<!-- PhotoSwipe UI JS file -->
-	<script src="js/velocity.ui.min.js"></script> 
+        /* For button at the bottom */
+        .nav-links {
+            text-align: center;
+        }
 
-	<!-- Slideshow/Image plugin -->
-	<script src="js/vegas.js"></script>
-	<!-- Main JS File -->
-	<script src="js/main.js"></script>
-	<script src="js/status.js"></script>
-	
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: white;
+        }
+    </style>
+</head>
 
-	</body>
+<body>
+
+    <!-- Page preloader -->
+    <div id="loading">
+        <div id="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Overlay and Star effect -->
+    <div class="global-overlay">
+        <div class="overlay skew-part">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        </div>
+    </div>
+
+    <!-- START - Home/Left Part -->
+    <section id="left-side">
+
+        <div class="content">
+
+            <h1 class="text-intro opacity-0">VVCE OFFICIAL<br>MINECRAFT SERVER<br></h1>
+
+            <p class="text-intro opacity-0" style="font-size: 24px; color: white; text-align: center;">IP:
+                <span id="copyText" onclick="copyToClipboard()" style="cursor: pointer; position: relative; display: inline-block;">
+                    <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); filter: blur(5px); z-index: -1;"></span>
+                    <span style="position: relative; z-index: 1;">PLAY.VVCE.FUN</span>
+                    <span style="font-size: 24px; margin-left: 10px; cursor: pointer;">📋</span> <!-- Clipboard emoji -->
+                </span>
+            </p>
+            <br>
+
+            <div class="nav-links">
+                <ul>
+                    <li style="display: inline-block; margin-right: 20px;">
+                        <a href="https://vvce.ac.in/" class="minecraft-btn">MAIN WEBSITE</a>
+                    </li>
+                    <li style="display: inline-block;">
+                        <a href="https://discord.gg/uVjhtNde8B" class="minecraft-btn">DISCORD SERVER</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copy success alert -->
+        <div id="copyAlert">IP Address Copied: PLAY.VVCE.FUN</div>
+
+        <!-- Social icons moved back to left-bottom -->
+        <div class="social-icons">
+            <img src="https://cdn.discordapp.com/attachments/879031482113466440/1312116681836990574/file.png?ex=674b5362&is=674a01e2&hm=8d510d9bf82cd9061b875bccadea8a532a498dfb634752f6a1f1a73e0f5112df&" alt="Image 1" onclick="myFunction()">
+            <img src="https://cdn.discordapp.com/attachments/879031482113466440/1312121768454000640/x-mark-xxl.png?ex=674b581f&is=674a069f&hm=23cce4bca663ebc42049f2ef6a04bbc0a7cd2e3d78af3bf9ef315bc68f79928b&" alt="Image 2" onclick="myFunction()">
+            <img src="https://cdn.discordapp.com/attachments/879031482113466440/1312122922466545684/file_1.png?ex=674b5932&is=674a07b2&hm=475440336197df328034c844d24c7da79a08f56e22f8d27ace67fec5b03245ed&" alt="Image 3" onclick="myFunction()">
+        </div>
+
+        <script>
+            function copyToClipboard() {
+                const text = document.getElementById("copyText").innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    const alertBox = document.getElementById("copyAlert");
+                    alertBox.classList.add("show");
+                    setTimeout(() => alertBox.classList.remove("show"), 2000);
+                });
+            }
+
+            function myFunction() {
+                window.location.href = 'https://discord.gg/uVjhtNde8B';
+            }
+        </script>
+    </section>
+    <!-- END - Home/Left Part -->
+
+    <footer>
+        <!-- Mojang text removed -->
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easings.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/velocity.min.js"></script>
+    <script src="js/velocity.ui.min.js"></script>
+    <script src="js/vegas.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/status.js"></script>
+
+</body>
 
 </html>
