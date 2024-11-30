@@ -77,25 +77,25 @@
             margin-right: 10px;
         }
 
-        /* Reduced image sizes */
+        /* Reduced image sizes for mobile */
         .social-icons img:first-child {
-            width: 130px;
-            height: 130px;
-        }
-
-        .social-icons img:nth-child(2) {
-            width: 30px;
-            height: 30px;
-        }
-
-        .social-icons img:last-child {
             width: 100px;
             height: 100px;
         }
 
+        .social-icons img:nth-child(2) {
+            width: 25px;
+            height: 25px;
+        }
+
+        .social-icons img:last-child {
+            width: 80px;
+            height: 80px;
+        }
+
         /* Enhanced heading */
         h1.text-intro {
-            font-size: 48px;
+            font-size: 32px;
             font-weight: 700;
             text-align: center;
             color: white;
@@ -105,10 +105,10 @@
             text-transform: none; /* Removed all caps */
         }
 
-        /* Styling for Minecraft-style buttons (broken blocks) with animation */
+        /* Minecraft-style buttons (broken blocks) */
         .minecraft-btn {
-            font-size: 18px;
-            padding: 15px 30px;
+            font-size: 14px;
+            padding: 12px 24px;
             border-radius: 10px;
             background: url('https://media.minecraft.net/wp-content/uploads/2020/10/Stone_Block.jpg') repeat;
             border: 3px solid #4c8f29;
@@ -180,6 +180,73 @@
             margin-top: 40px;
             font-size: 14px;
             color: white;
+        }
+
+        /* Media Queries for responsive design */
+        @media screen and (max-width: 768px) {
+            h1.text-intro {
+                font-size: 24px;
+            }
+
+            .minecraft-btn {
+                font-size: 12px;
+                padding: 10px 20px;
+            }
+
+            .social-icons img:first-child {
+                width: 80px;
+                height: 80px;
+            }
+
+            .social-icons img:nth-child(2) {
+                width: 20px;
+                height: 20px;
+            }
+
+            .social-icons img:last-child {
+                width: 60px;
+                height: 60px;
+            }
+
+            .nav-links {
+                margin-top: 20px;
+            }
+
+            .social-icons {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            #copyAlert {
+                font-size: 16px;
+                padding: 15px 30px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1.text-intro {
+                font-size: 20px;
+            }
+
+            .minecraft-btn {
+                font-size: 10px;
+                padding: 8px 16px;
+            }
+
+            .social-icons img:first-child {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-icons img:nth-child(2) {
+                width: 15px;
+                height: 15px;
+            }
+
+            .social-icons img:last-child {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
